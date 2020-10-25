@@ -1,4 +1,11 @@
-#install.packages("shinythemes")
+install.packages("shinythemes")
+install.packages("rjson")
+install.packages("RSocrata")
+install.packages("BatchGetSymbols")
+install.packages("ploty")
+
+
+
 # Preprocesado de la aplicacion
 library(shiny)
 library(shinythemes)
