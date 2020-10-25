@@ -1,8 +1,8 @@
-install.packages("shinythemes")
-install.packages("rjson")
-install.packages("RSocrata")
-install.packages("BatchGetSymbols")
-install.packages("ploty")
+#install.packages("shinythemes")
+#install.packages("rjson")
+#install.packages("RSocrata")
+#install.packages("BatchGetSymbols")
+#install.packages("ploty")
 
 
 
@@ -13,10 +13,12 @@ library(rjson)
 library(RSocrata)
 library(BatchGetSymbols)
 library(plotly)
+library(readxl)
 
+#TRM2 <- read.socrata("https://www.datos.gov.co/resource/ceyp-9c7c.csv")
 
+TRM2 <- read.csv('~/TRM2.csv')
 
-TRM2 <- read.socrata("https://www.datos.gov.co/resource/ceyp-9c7c.csv")
 oil2 = read.csv("https://datasource.kapsarc.org/explore/dataset/opec-crude-oil-price/download/?format=csv&timezone=America/Bogota&lang=en&use_labels_for_header=true&csv_separator=%3B" ,
                 sep = ";")
 oil <- oil2
