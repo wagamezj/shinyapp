@@ -10,7 +10,7 @@
 library(shiny)
 library(shinythemes)
 library(rjson)
-library(RSocrata)
+#library(RSocrata)
 library(BatchGetSymbols)
 library(plotly)
 library(readxl)
