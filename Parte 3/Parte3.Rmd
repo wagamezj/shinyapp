@@ -1,0 +1,72 @@
+---
+title: "Parte 3 Resultados y explicacion"
+author: "Willmer"
+date: "25/10/2020"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+`
+## Parte 3
+
+Para esta parte utilizamos principalmente la libreria (dplyr) que permite de tablas ejecutar facilmente procedimientos presentamos cada punto en el siguiente archivo:
+
+Subtotalice el ingreso por empresa donde la moneda origen sea dólares
+
+```{r}
+library(readr)
+library(dplyr)
+library(stringr)
+library(zoo)
+
+
+BASE <- read_delim("BASE.txt", 
+                   ";", escape_double = FALSE, col_types = cols(Fecha = col_date(format = "%d/%m/%Y")), 
+                   trim_ws = TRUE)
+subtotal_USD <- BASE[BASE$Moneda == 'USD',] %>% select(Empresa,Moneda,Ingreso) %>% group_by(Empresa,Moneda) %>% summarise(total = sum(Ingreso))
+
+subtotal_USD
+
+```
+
+Muestre el ingreso total por cada moneda de la empresa A (en moneda origen)
+```{r}
+total_empresaa <- BASE[BASE$Empresa == 'Empresa A',] %>% select(Empresa,Moneda,Ingreso) %>% group_by(Empresa,Moneda) %>% summarise(total = sum(Ingreso))
+
+total_empresaa
+
+
+```
+Cuál de las empresas fue la que menor ingreso en PESOS obtuvo durante el primer semestre (01/01/2017-30/06/2017)
+
+```{r}
+BASE$Empresa = str_replace_all(BASE$Empresa ,"EmpresaC","Empresa C")
+menor_ingreso <- BASE[(BASE$Fecha>='2017-01-01') & (BASE$Fecha<='2017-06-30') & (BASE$Moneda == 'PESO'),] %>% group_by(Empresa,Moneda) %>% summarise(total = sum(Ingreso))
+
+menor_ingreso
+
+```
+Vemos claramente que la empresa A fue la que menor ingreso generó
+
+Ingreso para todos los trimestres del año 2017 en PESOS de cada una de las empresas
+
+```{r}
+
+BASE$Trim <- as.yearqtr(BASE$Fecha, format = "%Y-%m-%d")
+
+Trimestre <- BASE[BASE$Moneda == 'PESO',] %>%  select(Trim,Empresa,Moneda,Ingreso) %>% group_by(Trim,Empresa,Moneda) %>% summarise(total = sum(Ingreso))
+
+Trimestre
+
+
+```
+Ingreso acumulado del año 2017 en PESOS desagregado por empresa y moneda
+
+```{r}
+total_emp_moneda <- BASE  %>% select(Empresa,Moneda,Ingreso) %>% group_by(Empresa,Moneda )%>% summarise(total = sum(Ingreso))
+total_emp_moneda
+
+```
+
+

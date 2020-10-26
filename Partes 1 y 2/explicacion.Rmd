@@ -1,0 +1,106 @@
+---
+title: "Explicacion aplicacion"
+author: "Willmer"
+date: "25/10/2020"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+### TABLERO PRUEBA ANALISTA DE INVERSION
+
+El Siguiente documento pretende ilustrar una presentación básica de cómo está construido el tablero en shiny.
+
+El tablero está dividido en tres partes 
+
+1. El procesamiento de los datos: Que abarca las descargas automáticas de los datos  y la respectiva depuración y preparacion de los datos
+
+2. El diseño  de la interfaz de usuario 
+
+3. Las acciones del servidor de R haciendo reactivo cada uno de sus elementos
+
+
+## Procesamiento de los datos
+
+La descarga de los datos se realiza directamente desde la web la TRM mediante servicios expuestos que tiene el gobierno nacional a través socrata y el portal www.datos.gov.co.
+El precio del petróleo igualmente mediante los servicios expuesto en la página kapsarc.org
+Y los datos de las acciones se descargan automáticamente mediante la librería BatchGetSymbols 
+
+```{r}
+
+# Ejemplo de descarga y procesamiento
+library(RSocrata)
+TRM2 <- read.socrata("https://www.datos.gov.co/resource/ceyp-9c7c.csv")
+oil2 = read.csv("https://datasource.kapsarc.org/explore/dataset/opec-crude-oil-price/download/?format=csv&timezone=America/Bogota&lang=en&use_labels_for_header=true&csv_separator=%3B" ,
+               sep = ";")
+oil <- oil2
+TRM <- TRM2
+oil$Date <- as.POSIXct(oil$Date, format = "%Y-%m-%d")
+TRM <-  TRM[order(as.Date(TRM$vigenciadesde, format="%Y-%m-%d")),]
+oil <-  oil[order(as.Date(oil$Date, format = "%Y-%m-%d")),]
+oil <-  oil[oil$Date >= '2008-01-01',]
+TRM <-  TRM[TRM$vigenciadesde >= '2008-01-01',]
+copvsoil <- merge(x = TRM , y = oil , by.x = "vigenciadesde" , by.y = "Date", all = FALSE )
+copvsoil$año <- format(copvsoil$vigenciadesde , format = "%Y")
+copvsoil$mes <- format(copvsoil$vigenciadesde , format = "%Y-%m")
+copvsoil$mesnum <- format(copvsoil$vigenciadesde , format = "%m")
+
+head(copvsoil)
+
+```
+
+Luego de tener los datos financieros y hacer las transformaciones necesarias que pueden encontrar mas detallado en el codigo de la aplicacion nos disponer a plantear la interfaz grafica.
+
+
+## 2. El diseño  de la interfaz de usuario 
+
+La pagina fué creado de forma fluid page con dos viñetas parte uno y parte dos para dar respuestas a las dos primeras partes de la prueba el tema elegido es "cerulean" y se trabajó una malla de tal forma que pudieramos obtener el  fluidRow divido en dos grandes renglones de ubicamos 2 y 3 plot respectivamente .
+
+En la parte superior ubicamos los respectivos inputs del modelo Indicador(petroleo,TRM), Año y mes
+
+Al hacer clik en el nos muestra los cambios dinamicos el modelo es para todas las graficas el año es para generar las graficas discretizadas del boxplot, el scater plot y la grafica del mes y el mes para ver la linea de graficas del mes.
+
+![Imagen general](evidencia/control.png)
+
+De esta forma damos respuesta a las pregunta dadas en los numerales
+
+![Imagen general](evidencia/completo1.png)
+
+![Imagen general](evidencia/completo2.png)
+Y mediante el navebar podremos seleccionar le parte 2 donde seleccionamos algunas de las acciones mas importantes de S&P500
+![Imagen general](evidencia/acciones.png)
+##3. Las acciones del servidor
+
+En este paso configuramos todos nuestros input reactivos configuramos nuestras graficas con la libreria seleccionada para hacer las graficas que fue ploty ejemplo:
+
+
+bolsa <- reactive({
+   financial_data[(financial_data$ticker == input$accion) & (financial_data$año == input$yearx),]
+   
+output$finanza <- renderPlotly({
+  plot_ly(bolsa(), y = bolsa()$price.close  , x = bolsa()$ref.date , type = 'scatter', mode = 'lines')
+  
+}
+)
+
+En este ejemplo de codigo que se repite muchas veces seleccionamos un dataframe configurados por nuestros input y lo guardamos con la funcion bolsa() luego renderizamos nuestra grafica en ploty con el dataframe que se va creando a medida que el usuario marque cada una de las opciones disponible en este caso
+acciones y año
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

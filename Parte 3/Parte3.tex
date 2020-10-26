@@ -1,0 +1,350 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Parte 3 Resultados y explicacion},
+            pdfauthor={Willmer},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Parte 3 Resultados y explicacion}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Willmer}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{25/10/2020}
+
+
+\begin{document}
+\maketitle
+
+` \#\# Parte 3
+
+Para esta parte utilizamos principalmente la libreria (dplyr) que
+permite de tablas ejecutar facilmente procedimientos presentamos cada
+punto en el siguiente archivo:
+
+Subtotalice el ingreso por empresa donde la moneda origen sea dólares
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readr)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 3.6.3
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(stringr)}
+\KeywordTok{library}\NormalTok{(zoo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'zoo'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     as.Date, as.Date.numeric
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BASE <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}\StringTok{"BASE.txt"}\NormalTok{, }
+                   \StringTok{";"}\NormalTok{, }\DataTypeTok{escape_double =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col_types =} \KeywordTok{cols}\NormalTok{(}\DataTypeTok{Fecha =} \KeywordTok{col_date}\NormalTok{(}\DataTypeTok{format =} \StringTok{"%d/%m/%Y"}\NormalTok{)), }
+                   \DataTypeTok{trim_ws =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{subtotal_USD <-}\StringTok{ }\NormalTok{BASE[BASE}\OperatorTok{$}\NormalTok{Moneda }\OperatorTok{==}\StringTok{ 'USD'}\NormalTok{,] }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(Empresa,Moneda,Ingreso) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{group_by}\NormalTok{(Empresa,Moneda) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{total =} \KeywordTok{sum}\NormalTok{(Ingreso))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'Empresa' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{subtotal_USD}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+## # Groups:   Empresa [3]
+##   Empresa   Moneda total
+##   <chr>     <chr>  <dbl>
+## 1 Empesa B  USD    15.7 
+## 2 Empresa A USD     9.86
+## 3 Empresa C USD     6.22
+\end{verbatim}
+
+Muestre el ingreso total por cada moneda de la empresa A (en moneda
+origen)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{total_empresaa <-}\StringTok{ }\NormalTok{BASE[BASE}\OperatorTok{$}\NormalTok{Empresa }\OperatorTok{==}\StringTok{ 'Empresa A'}\NormalTok{,] }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(Empresa,Moneda,Ingreso) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{group_by}\NormalTok{(Empresa,Moneda) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{total =} \KeywordTok{sum}\NormalTok{(Ingreso))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'Empresa' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{total_empresaa}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+## # Groups:   Empresa [1]
+##   Empresa   Moneda     total
+##   <chr>     <chr>      <dbl>
+## 1 Empresa A EURO       0.575
+## 2 Empresa A PESO   71668.   
+## 3 Empresa A USD        9.86
+\end{verbatim}
+
+Cuál de las empresas fue la que menor ingreso en PESOS obtuvo durante el
+primer semestre (01/01/2017-30/06/2017)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BASE}\OperatorTok{$}\NormalTok{Empresa =}\StringTok{ }\KeywordTok{str_replace_all}\NormalTok{(BASE}\OperatorTok{$}\NormalTok{Empresa ,}\StringTok{"EmpresaC"}\NormalTok{,}\StringTok{"Empresa C"}\NormalTok{)}
+\NormalTok{menor_ingreso <-}\StringTok{ }\NormalTok{BASE[(BASE}\OperatorTok{$}\NormalTok{Fecha}\OperatorTok{>=}\StringTok{'2017-01-01'}\NormalTok{) }\OperatorTok{&}\StringTok{ }\NormalTok{(BASE}\OperatorTok{$}\NormalTok{Fecha}\OperatorTok{<=}\StringTok{'2017-06-30'}\NormalTok{) }\OperatorTok{&}\StringTok{ }\NormalTok{(BASE}\OperatorTok{$}\NormalTok{Moneda }\OperatorTok{==}\StringTok{ 'PESO'}\NormalTok{),] }\OperatorTok{%>%}\StringTok{ }\KeywordTok{group_by}\NormalTok{(Empresa,Moneda) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{total =} \KeywordTok{sum}\NormalTok{(Ingreso))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'Empresa' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{menor_ingreso}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+## # Groups:   Empresa [3]
+##   Empresa   Moneda   total
+##   <chr>     <chr>    <dbl>
+## 1 Empesa B  PESO   174377.
+## 2 Empresa A PESO    40276.
+## 3 Empresa C PESO    76994.
+\end{verbatim}
+
+Vemos claramente que la empresa A fue la que menor ingreso generó
+
+Ingreso para todos los trimestres del año 2017 en PESOS de cada una de
+las empresas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BASE}\OperatorTok{$}\NormalTok{Trim <-}\StringTok{ }\KeywordTok{as.yearqtr}\NormalTok{(BASE}\OperatorTok{$}\NormalTok{Fecha, }\DataTypeTok{format =} \StringTok{"%Y-%m-%d"}\NormalTok{)}
+
+\NormalTok{Trimestre <-}\StringTok{ }\NormalTok{BASE[BASE}\OperatorTok{$}\NormalTok{Moneda }\OperatorTok{==}\StringTok{ 'PESO'}\NormalTok{,] }\OperatorTok{%>%}\StringTok{  }\KeywordTok{select}\NormalTok{(Trim,Empresa,Moneda,Ingreso) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{group_by}\NormalTok{(Trim,Empresa,Moneda) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{total =} \KeywordTok{sum}\NormalTok{(Ingreso))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'Trim', 'Empresa' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Trimestre}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12 x 4
+## # Groups:   Trim, Empresa [12]
+##    Trim      Empresa   Moneda  total
+##    <yearqtr> <chr>     <chr>   <dbl>
+##  1 2017 Q1   Empesa B  PESO   89477.
+##  2 2017 Q1   Empresa A PESO   20624.
+##  3 2017 Q1   Empresa C PESO   39116.
+##  4 2017 Q2   Empesa B  PESO   84900.
+##  5 2017 Q2   Empresa A PESO   19652.
+##  6 2017 Q2   Empresa C PESO   37878.
+##  7 2017 Q3   Empesa B  PESO   66042.
+##  8 2017 Q3   Empresa A PESO   12221.
+##  9 2017 Q3   Empresa C PESO   25054.
+## 10 2017 Q4   Empesa B  PESO   86824.
+## 11 2017 Q4   Empresa A PESO   19171.
+## 12 2017 Q4   Empresa C PESO   40690.
+\end{verbatim}
+
+Ingreso acumulado del año 2017 en PESOS desagregado por empresa y moneda
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{total_emp_moneda <-}\StringTok{ }\NormalTok{BASE  }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(Empresa,Moneda,Ingreso) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{group_by}\NormalTok{(Empresa,Moneda )}\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{total =} \KeywordTok{sum}\NormalTok{(Ingreso))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'Empresa' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{total_emp_moneda}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 9 x 3
+## # Groups:   Empresa [3]
+##   Empresa   Moneda      total
+##   <chr>     <chr>       <dbl>
+## 1 Empesa B  EURO        1.06 
+## 2 Empesa B  PESO   327243.   
+## 3 Empesa B  USD        15.7  
+## 4 Empresa A EURO        0.575
+## 5 Empresa A PESO    71668.   
+## 6 Empresa A USD         9.86 
+## 7 Empresa C EURO        0.349
+## 8 Empresa C PESO   142738.   
+## 9 Empresa C USD         6.22
+\end{verbatim}
+
+
+\end{document}
